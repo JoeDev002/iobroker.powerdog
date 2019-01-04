@@ -41,6 +41,10 @@ const utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.powerdog.0
 const adapter = new utils.Adapter('powerdog');
 
+var xmlrpc = require('xmlrpc');
+var clientOptions = 'http://192.168.67.25:20000/';
+
+
 /*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
 it is available then var.The variable is available inside a block and it's childs, but not outside. 
 You can define the same variable name inside a child without produce a conflict with the variable of the parent block.*/
@@ -100,6 +104,11 @@ function main() {
     adapter.log.info('config test1: '    + adapter.config.test2);
     adapter.log.info('config mySelect: ' + adapter.config.mySelect);
 
+	var client = new xmlrpc.createClient(clientOptions);
+	client.methodCall('getPowerDogInfo',['Passwort'], function(error, value, reply)
+	if(error) log('Fehler PowerDog: ' + error, 'error');
+		else log('PowerDog value: ' + JSON.stringify(value)); //zum Anzeigen der Antworten
+    adapter.log.info('End');
 
     /**
      *

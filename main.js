@@ -100,15 +100,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config test1: '    + adapter.config.test1);
-    adapter.log.info('config test1: '    + adapter.config.test2);
-    adapter.log.info('config mySelect: ' + adapter.config.mySelect);
-
-	var client = new xmlrpc.createClient(clientOptions);
-	client.methodCall('getPowerDogInfo',['Passwort'], function(error, value, reply)
-	if(error) log('Fehler PowerDog: ' + error, 'error');
-		else log('PowerDog value: ' + JSON.stringify(value)); //zum Anzeigen der Antworten
-    adapter.log.info('End');
+    adapter.log.debug('IP-Address of Powerdog: ' + adapter.config.IpAddress);
+    adapter.log.debug('Port of Powerdog: '    + adapter.config.Port);
+    adapter.log.debug('API-Key of Powerdog: ' + adapter.config.ApiKey);
 
     /**
      *
@@ -119,49 +113,116 @@ function main() {
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      *
      */
+	// Creates an XML-RPC client. Passes the host information on where to
+	// make the XML-RPC calls.
+	var client = xmlrpc.createClient({ host: adapter.config.IpAddress, port: 20000, path: '/'})
+						
+	// Sends a method call to the XML-RPC server
+	client.methodCall('getPowerDogInfo',[adapter.config.ApiKey], function(error, obj, reply) {
+	// Results of the method response
+		if(error) 
+			adapter.log.error('Fehler PowerDog: ' + error);
+		else 
+		{
+			for (let key in obj) {
+				// checking if it's nested
+				if (key === 'Reply' && obj.hasOwnProperty(key) && (typeof obj[key] === "object")) {
+					let objInfo = obj[key];
+					for (let keyInfo in objInfo) {
+						adapter.log.debug(keyInfo + ': ' + objInfo[keyInfo]);
+						adapter.setObjectNotExists('Info.' + keyInfo, {
+							type: 'state',
+							common: {
+								name: keyInfo,
+								type: 'state'
+							},
+							native: {}
+						});
+						adapter.setState('Info.' + keyInfo, {val: objInfo[keyInfo], ack: true});
+					}
+				}
+			}
+		}
+//		adapter.log.info(JSON.stringify(obj));
+	}); 
 
-    adapter.setObject('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
-        },
-        native: {}
-    });
-
+	// Sends a method call to the XML-RPC server
+	client.methodCall('getSensors',['ed2hab'], function(error, obj, reply) {
+		// Results of the method response
+		if(error) 
+		  adapter.log.error('Fehler PowerDog: ' + error);
+		else 
+		{
+			for (let key in obj) {
+				// checking if it's nested
+				if (key === 'Reply' && obj.hasOwnProperty(key) && (typeof obj[key] === "object")) {
+					let objSensor = obj[key];
+					for (let keySensor in objSensor) {
+						adapter.log.debug(keySensor);
+						if (objSensor.hasOwnProperty(keySensor) && (typeof objSensor[keySensor] === "object")) {
+							let objSensorInfo = objSensor[keySensor];
+							adapter.log.debug(objSensorInfo);
+							for (let keyInfo in objSensorInfo) {
+								adapter.log.debug(keyInfo + ': ' + objSensorInfo[keyInfo]);
+								adapter.setObjectNotExists('Sensors.' + keySensor + '.' + keyInfo, {
+									type: 'state',
+									common: {
+										name: keyInfo,
+										type: 'state'
+									},
+									native: {}
+								});
+								adapter.setState('Sensors.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
+							}
+						}
+					}
+				}
+			}
+//			adapter.log.info('PowerDog sensor data: ' + JSON.stringify(obj));
+		}
+	}); 
+	
+	// Sends a method call to the XML-RPC server
+	client.methodCall('getCounters',['ed2hab'], function(error, obj, reply) {
+		// Results of the method response
+		if(error) 
+		  adapter.log.error('Fehler PowerDog: ' + error);
+		else 
+		{
+			for (let key in obj) {
+				// checking if it's nested
+				if (key === 'Reply' && obj.hasOwnProperty(key) && (typeof obj[key] === "object")) {
+					let objSensor = obj[key];
+					for (let keySensor in objSensor) {
+						adapter.log.debug(keySensor);
+						if (objSensor.hasOwnProperty(keySensor) && (typeof objSensor[keySensor] === "object")) {
+							let objSensorInfo = objSensor[keySensor];
+							adapter.log.debug(objSensorInfo);
+							for (let keyInfo in objSensorInfo) {
+								adapter.log.debug(keyInfo + ': ' + objSensorInfo[keyInfo]);
+								adapter.setObjectNotExists('Counters.' + keySensor + '.' + keyInfo, {
+									type: 'state',
+									common: {
+										name: keyInfo,
+										type: 'state'
+									},
+									native: {}
+								});
+								adapter.setState('Counters.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
+							}
+						}
+					}
+				}
+			}
+//			adapter.log.info('PowerDog sensor data: ' + JSON.stringify(obj));
+		}
+	}); 
+ 
     // in this powerdog all states changes inside the adapters namespace are subscribed
-    adapter.subscribeStates('*');
-
-
-    /**
-     *   setState examples
-     *
-     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-     *
-     */
-
-    // the variable testVariable is set to true as command (ack=false)
-    adapter.setState('testVariable', true);
-
-    // same thing, but the value is flagged "ack"
-    // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
-
-    // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
-
-
-
-    // examples for the checkPassword/checkGroup functions
-    adapter.checkPassword('admin', 'iobroker', function (res) {
-        console.log('check user admin pw ioboker: ' + res);
-    });
-
-    adapter.checkGroup('admin', 'admin', function (res) {
-        console.log('check group user admin group admin: ' + res);
-    });
-
-
+//  adapter.subscribeStates('*');
+ 
+	setTimeout( function () {
+		adapter.stop();
+	}, 10000);
 
 }

@@ -12,7 +12,7 @@
                 "nl": "Eerste release"
             }
         },
-		"title": "Javascript/Node.js based powerdog",
+		"title": "PowerDog",
         "titleLang": {
             "en": "Javascript/Node.js based powerdog",
             "de": "Javascript / Node.js basierte Vorlagenadapter",
@@ -48,7 +48,7 @@
         },
         "platform": "Javascript/Node.js",
         "mode": "schedule",
-		"schedule": "*/1 * * * *",
+		"schedule": "*/5 * * * *",
         "icon": "powerdog.png",
         "materialize": true,
         "enabled": true,

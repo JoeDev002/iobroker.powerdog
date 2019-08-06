@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "powerdog",
+        "name": "Powerdog",
         "version": "0.0.2",
         "news": {
             "0.0.1": {
@@ -24,14 +24,14 @@
             "es": "Adaptador de plantilla basado en JavaScript / Node.js"
         },
         "desc": {
-            "en": "ioBroker powerdog",
-            "de": "ioBroker Powerdog",
-            "ru": "ioBroker Powerdog как образец",
+            "en": "PowerDog from ecodata",
+            "de": "PowerDog von ecodata",
+            "ru": "PowerDog как образец",
             "pt": "Modelo de adaptador para o ioBroker",
-            "fr": "ioBroker adaptateur modèle",
-            "nl": "ioBroker Powerdog",
-            "it": "Adattatore modello ioBroker",
-            "es": "Adaptador de plantilla ioBroker"
+            "fr": "PowerDog adaptateur modèle",
+            "nl": "PowerDog",
+            "it": "Adattatore modello PowerDog",
+            "es": "Adaptador de plantilla PowerDog"
         },
         "authors": [
             "Joachim Schmalz <JoeDev002@gmail.com>"
@@ -52,9 +52,9 @@
         "icon": "powerdog.png",
         "materialize": true,
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/JoeDev002/ioBroker.powerdog/master/admin/powerdog.png",
+        "extIcon": "https://raw.githubusercontent.com/JoeDev002/iobroker.powerdog/master/admin/powerdog.png",
         "keywords": ["powerdog", "vis", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/ioBroker/ioBroker.powerdog/blob/master/README.md",
+        "readme": "https://github.com/ioBroker/iobroker.powerdog/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
         "license": "MIT",

@@ -24,8 +24,8 @@
             "es": "Adaptador de plantilla basado en JavaScript / Node.js"
         },
         "desc": {
-            "en": "PowerDog from ecodata",
-            "de": "PowerDog von ecodata",
+            "en": "For PowerDog device from ecodata",
+            "de": "Für PowerDog Geräte von ecodata",
             "ru": "PowerDog как образец",
             "pt": "Modelo de adaptador para o ioBroker",
             "fr": "PowerDog adaptateur modèle",

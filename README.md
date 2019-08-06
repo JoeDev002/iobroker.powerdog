@@ -1,8 +1,8 @@
 ![Logo](admin/powerdog.png)
-# ioBroker.powerdog
-=================
+# PowerDog ecodata
+==================
 
-This adapter is a powerdog for the creation of an ioBroker adapter. You do not need it unless you plan on developing your own adapter.
+This adapter for ioBroker is for the PowerDog from ecodata.
 
 It includes both code running within iobroker and as vis widget. If you only plan to create a vis widget then you should use the [iobroker.vis-powerdog](https://github.com/ioBroker/ioBroker.vis-powerdog) instead.
 

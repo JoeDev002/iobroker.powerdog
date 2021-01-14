@@ -12,7 +12,7 @@
       "email": "JoeDev002@gmail.com"
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.powerdog",
+  "homepage": "https://github.com/JoeDev002/ioBroker.powerdog.git",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.powerdog"
+    "url": "https://github.com/JoeDev002/ioBroker.powerdog.git"
   },
   "dependencies": {
     "user": "0.0.0"
@@ -37,7 +37,7 @@
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.powerdog/issues"
+    "url": "https://github.com/JoeDev002/ioBroker.powerdog.git/issues"
   },
   "readmeFilename": "README.md"
 }

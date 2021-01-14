@@ -1,15 +1,15 @@
 {
   "name": "iobroker.powerdog",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "powerdog",
   "author": {
     "name": "Joachim Schmalz",
-    "email": "joachim.schmalzl67+iob@gmail.com"
+    "email": "JoeDev002@gmail.com"
   },
   "contributors": [
     {
       "name": "Joachim Schmalz",
-      "email": "joachim.schmalzl67+iob@gmail.com"
+      "email": "JoeDev002@gmail.com"
     }
   ],
   "homepage": "https://github.com/ioBroker/ioBroker.powerdog",

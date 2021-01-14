@@ -1,9 +1,7 @@
 {
-  "Auto": "Auto",
-  "Manual": "Manual",
-  "My select": "My select",
+  "IP-Address of Powerdog": "IP-Address of Powerdog",
+  "Port of Powerdog": "Communication Port of Powerdog",
+  "API-Key of Powerdog": "API-Key of Powerdog",
+  "Wait for Answer": "Wait for Answer from Powerdog (seconds, min. 2)",
   "on save adapter restarts with new config immediately": "on save adapter restarts with new config immediately",
-  "template adapter settings": "template adapter settings",
-  "test1": "Test 1",
-  "test2": "Test 2"
 }

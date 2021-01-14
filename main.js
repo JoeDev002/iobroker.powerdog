@@ -42,7 +42,6 @@ const utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 const adapter = new utils.Adapter('powerdog');
 
 var xmlrpc = require('xmlrpc');
-var clientOptions = 'http://192.168.67.25:20000/';
 
 
 /*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
@@ -53,7 +52,7 @@ let variable = 1234;
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
     try {
-        adapter.log.info('cleaned everything up...');
+        adapter.log.debug('cleaned everything up...');
         callback();
     } catch (e) {
         callback();
@@ -63,17 +62,17 @@ adapter.on('unload', function (callback) {
 // is called if a subscribed object changes
 adapter.on('objectChange', function (id, obj) {
     // Warning, obj can be null if it was deleted
-    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+    adapter.log.debug('objectChange ' + id + ' ' + JSON.stringify(obj));
 });
 
 // is called if a subscribed state changes
 adapter.on('stateChange', function (id, state) {
     // Warning, state can be null if it was deleted
-    adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+    adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
 
     // you can use the ack flag to detect if it is status (true) or command (false)
     if (state && !state.ack) {
-        adapter.log.info('ack is not set!');
+        adapter.log.debug('ack is not set!');
     }
 });
 
@@ -102,7 +101,10 @@ function main() {
     // adapter.config:
     adapter.log.debug('IP-Address of Powerdog: ' + adapter.config.IpAddress);
     adapter.log.debug('Port of Powerdog: '    + adapter.config.Port);
-    adapter.log.debug('API-Key of Powerdog: ' + adapter.config.ApiKey);
+	adapter.log.debug('API-Key of Powerdog: ' + adapter.config.ApiKey);
+	if(adapter.config.Answertime < 2)
+		adapter.config.Answertime = 2;
+    adapter.log.debug('Wait for Answer: ' + adapter.config.Answertime);
 
     /**
      *
@@ -121,7 +123,7 @@ function main() {
 	client.methodCall('getPowerDogInfo',[adapter.config.ApiKey], function(error, obj, reply) {
 	// Results of the method response
 		if(error) 
-			adapter.log.error('Fehler PowerDog: ' + error);
+			adapter.log.error('Error PowerDog: ' + error);
 		else 
 		{
 			for (let key in obj) {
@@ -143,11 +145,11 @@ function main() {
 				}
 			}
 		}
-//		adapter.log.info(JSON.stringify(obj));
+//		adapter.log.debug(JSON.stringify(obj));
 	}); 
 
 	// Sends a method call to the XML-RPC server
-	client.methodCall('getSensors',['ed2hab'], function(error, obj, reply) {
+	client.methodCall('getSensors',[adapter.config.ApiKey], function(error, obj, reply) {
 		// Results of the method response
 		if(error) 
 		  adapter.log.error('Fehler PowerDog: ' + error);
@@ -178,12 +180,12 @@ function main() {
 					}
 				}
 			}
-//			adapter.log.info('PowerDog sensor data: ' + JSON.stringify(obj));
+//			adapter.log.debug('PowerDog sensor data: ' + JSON.stringify(obj));
 		}
 	}); 
 	
 	// Sends a method call to the XML-RPC server
-	client.methodCall('getCounters',['ed2hab'], function(error, obj, reply) {
+	client.methodCall('getCounters',[adapter.config.ApiKey], function(error, obj, reply) {
 		// Results of the method response
 		if(error) 
 		  adapter.log.error('Fehler PowerDog: ' + error);
@@ -214,7 +216,7 @@ function main() {
 					}
 				}
 			}
-//			adapter.log.info('PowerDog sensor data: ' + JSON.stringify(obj));
+//			adapter.log.debug('PowerDog sensor data: ' + JSON.stringify(obj));
 		}
 	}); 
  
@@ -223,6 +225,6 @@ function main() {
  
 	setTimeout( function () {
 		adapter.stop();
-	}, 10000);
+	}, adapter.config.Answertime);
 
 }

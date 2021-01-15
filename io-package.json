@@ -1,15 +1,19 @@
 {
     "common": {
         "name": "powerdog",
-        "version": "0.0.2",
+        "version": "0.1.0",
         "news": {
             "0.0.1": {
-                "en": "initial adapter",
-                "de": "Initiale Version",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
             }
         },
 		"title": "PowerDog",
@@ -34,39 +38,58 @@
             "es": "Adaptador de plantilla PowerDog"
         },
         "authors": [
-            "Joachim Schmalz <JoeDev002@gmail.com>"
+            "Author <JoeDev002@gmail.com>"
         ],
-        "docs": {
-            "en": "docs/en/admin.md",
-            "ru": "docs/ru/admin.md",
-            "de": "docs/de/admin.md",
-            "es": "docs/es/admin.md",
-            "it": "docs/it/admin.md",
-            "fr": "docs/fr/admin.md",
-            "nl": "docs/nl/admin.md",
-            "pt": "docs/pt/admin.md"
-        },
+        "keywords": [
+		"powerdog",
+		"Smart Home",
+	        "home automation" 
+	],
+        
+        "license": "MIT",
         "platform": "Javascript/Node.js",
-        "mode": "schedule",
-		"schedule": "*/5 * * * *",
+	"main": "main.js",
         "icon": "powerdog.png",
-        "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/JoeDev002/iobroker.powerdog/master/admin/powerdog.png",
-        "keywords": ["powerdog", "vis", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/ioBroker/iobroker.powerdog/blob/master/README.md",
+        "readme": "https://github.com/JoeDev002/iobroker.powerdog/master/README.md",
         "loglevel": "info",
+        "mode": "schedule",
+		"schedule": "*/5 * * * *",
         "type": "general",
-        "license": "MIT",
-        "messagebox": false,
-        "restartAdapters": ["vis"]
+        "compact": true,
+        "materialize": true,
+        "materializeTab": true,
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "PowerDog (JavaScript)",
+                "de": "PowerDog (JavaScript)",
+                "ru": "PowerDog (JavaScript)",
+                "pt": "PowerDog (JavaScript)",
+                "nl": "PowerDog (JavaScript)",
+                "fr": "PowerDog (JavaScript)",
+                "it": "PowerDog (JavaScript)",
+                "es": "PowerDog (JavaScript)",
+                "pl": "PowerDog (JavaScript)",
+                "zh-cn": "PowerDog (JavaScript)"
+            },
+            "link": "",
+            "fa-icon": "info"
+        },
+        "supportCustoms": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
     },
     "native": {
-        "test1": true,
-        "test2": 42,
-        "mySelect": "auto"
+        "IpAddress": "0.0.0.0"
+        "ApiKey": abcde,
+        "Port": 20000,
+        "Answertime": 10"
     },
-    "objects": [
-
-    ]
+    "objects": []
+    "instanceObjects": []
 }

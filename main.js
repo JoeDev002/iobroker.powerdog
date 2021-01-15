@@ -12,7 +12,7 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 var xmlrpc = require('xmlrpc');
 
-class Template extends utils.Adapter {
+class PowerDog extends utils.Adapter {
 
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
@@ -168,8 +168,8 @@ if (module.parent) {
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
-    module.exports = (options) => new Template(options);
+    module.exports = (options) => new PowerDog(options);
 } else {
     // otherwise start the instance directly
-    new Template();
+    new PowerDog();
 }

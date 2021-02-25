@@ -1,7 +1,7 @@
 {
   "IP-Address of Powerdog": "IP-Address of Powerdog",
-  "Port of Powerdog": "Communication Port of Powerdog",
+  "Port of Powerdog": "Port of Powerdog",
   "API-Key of Powerdog": "API-Key of Powerdog",
-  "Wait for Answer": "Wait for Answer from Powerdog (seconds, min. 2)",
+  "Wait for Answer Time (seconds, mininum: 2)": "Wait for Answer Time (seconds, mininum: 2)",
   "on save adapter restarts with new config immediately": "on save adapter restarts with new config immediately",
 }

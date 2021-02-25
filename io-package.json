@@ -86,9 +86,9 @@
     },
     "native": {
         "IpAddress": "0.0.0.0"
-        "ApiKey": abcde,
+        "ApiKey": "abcde",
         "Port": 20000,
-        "Answertime": 10"
+        "Answertime": 10
     },
     "objects": []
     "instanceObjects": []

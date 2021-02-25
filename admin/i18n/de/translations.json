@@ -2,6 +2,6 @@
   "IP-Address of Powerdog": "IP-Adresse des Powerdog",
   "Port of Powerdog": "Port des Powerdog",
   "API-Key of Powerdog": "API-Schlüssel des Powerdog",
-  "Wait for Answer Time (seconds, mininum: 2)": "Wartezeit auf Antwort vom Powerdog (Sekunden, Minimal: 2",
+  "Wait for Response (seconds, mininum: 2)": "Antwortzeit vom Powerdog (Sekunden, Minimal: 2",
   "on save adapter restarts with new config immediately": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
 }

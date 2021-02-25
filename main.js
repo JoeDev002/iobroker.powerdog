@@ -66,7 +66,7 @@ class PowerDog extends utils.Adapter {
 						let objInfo = obj[key];
 						for (let keyInfo in objInfo) {
 							this.log.debug(keyInfo + ': ' + objInfo[keyInfo]);
-							await this.setObjectNotExists('Info.' + keyInfo, {
+							this.setObjectNotExists('Info.' + keyInfo, {
 								type: 'state',
 								common: {
 									name: keyInfo,
@@ -74,7 +74,7 @@ class PowerDog extends utils.Adapter {
 								},
 								native: {}
 							});
-							await this.setState('Info.' + keyInfo, {val: objInfo[keyInfo], ack: true});
+							this.setState('Info.' + keyInfo, {val: objInfo[keyInfo], ack: true});
 						}
 					}
 				}
@@ -100,7 +100,7 @@ class PowerDog extends utils.Adapter {
 								this.log.debug(objSensorInfo);
 								for (let keyInfo in objSensorInfo) {
 									this.log.debug(keyInfo + ': ' + objSensorInfo[keyInfo]);
-									await this.setObjectNotExists('Sensors.' + keySensor + '.' + keyInfo, {
+									this.setObjectNotExists('Sensors.' + keySensor + '.' + keyInfo, {
 										type: 'state',
 										common: {
 											name: keyInfo,
@@ -108,7 +108,7 @@ class PowerDog extends utils.Adapter {
 										},
 										native: {}
 									});
-									await this.setState('Sensors.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
+									this.setState('Sensors.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
 								}
 							}
 						}
@@ -136,7 +136,7 @@ class PowerDog extends utils.Adapter {
 								this.log.debug(objSensorInfo);
 								for (let keyInfo in objSensorInfo) {
 									this.log.debug(keyInfo + ': ' + objSensorInfo[keyInfo]);
-									await this.setObjectNotExists('Counters.' + keySensor + '.' + keyInfo, {
+									this.setObjectNotExists('Counters.' + keySensor + '.' + keyInfo, {
 										type: 'state',
 										common: {
 											name: keyInfo,
@@ -144,7 +144,7 @@ class PowerDog extends utils.Adapter {
 										},
 										native: {}
 									});
-									await this.setState('Counters.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
+									this.setState('Counters.' + keySensor + '.' + keyInfo, {val: objSensorInfo[keyInfo], ack: true});
 								}
 							}
 						}

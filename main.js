@@ -22,6 +22,7 @@ class PowerDog extends utils.Adapter {
             ...options,
             name: 'template',
         });
+	this.log.debug('Constructor');
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('objectChange', this.onObjectChange.bind(this));
